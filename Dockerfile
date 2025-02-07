@@ -32,11 +32,16 @@ ENV PATH=$PATH:/usr/local/go/bin
 
 
 ### USING NVIM BTW ###
-RUN wget https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-linux-x86_64.appimage
-RUN chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage --appimage-extract
-RUN ./squashfs-root/usr/bin/nvim
+# RUN wget https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+RUN apt-get install -y neovim
+
+ENV XDG_CONFIG_HOME /config
+RUN mkdir -p /config/nvim
+
+RUN apt install zsh -y
+RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 ### KICKSTART NVIM ###
 RUN git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 
-
+CMD ["/bin/zsh"]
