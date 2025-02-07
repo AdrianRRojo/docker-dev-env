@@ -2,6 +2,14 @@
 
 This is a Dockerfile for building a Docker image for my dev environment. Will be edited over time.
 
+## Included ##
+- Python3
+- Pip
+- Git
+- oh-my-zsh
+- neovim btw
+- GoLang
+
 ### Volume ###
 
 ```bash
@@ -17,6 +25,6 @@ docker pull adrianrojo/dev-env:latest
 ### Create container ###
 <!-- This opens ports 8080, 22, 443, and 80 for the container, and mounts the volume to the container -->
 ```bash
-docker run -it --name dev-container -v dev-volume:/arojo-dev -p 8080:8080 -p 22:22 -p 443:443 -p 80:80 adrianrojo/dev-env:latest
+docker run -it --name dev-container -v dev-volume:/arojo-dev -p 8080:8080 -p 22:22 -p 443:443 -p 80:80 adrianrojo/dev-env:v1.2
 ```
 
